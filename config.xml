@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="io.cordova.hellocordova" version="1.0.0"
+    xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0">
+
+    <name>Die Boek Van Herinnering</name>
+    <description>Sample Apache Cordova App</description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+
+    <content src="index.html" />
+
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+
+<preference name="SplashScreen" value="screen" />
+<preference name="SplashScreenDelay" value="3000" />
+<preference name="FadeSplashScreen" value="true" />
+<preference name="FadeSplashScreenDuration" value="500" />
+<preference name="AutoHideSplashScreen" value="true" />
+<preference name="ShowSplashScreenSpinner" value="false" />
+
+<!-- Android 12+ splash screen preferences -->
+<preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/screen/android/splash.png" />
+<preference name="AndroidWindowSplashScreenBackground" value="#000000" />
+<preference name="AndroidWindowSplashScreenDuration" value="3000" />
+<preference name="AndroidWindowSplashScreenImmersiveMode" value="true" />
+
+<platform name="android">
+    <!-- Icons -->
+    <icon src="res/icon/icon.png" />
+    <icon src="res/icon/icon-36.png" density="ldpi" />
+    <icon src="res/icon/icon-48.png" density="mdpi" />
+    <icon src="res/icon/icon-72.png" density="hdpi" />
+    <icon src="res/icon/icon-96.png" density="xhdpi" />
+    <icon src="res/icon/icon-144.png" density="xxhdpi" />
+    <icon src="res/icon/icon-192.png" density="xxxhdpi" />
+
+    </platform>
+
+</widget>
+
