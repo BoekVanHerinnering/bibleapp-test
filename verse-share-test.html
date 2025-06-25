@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Verse Share Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #e0e0e0;
+      padding: 20px;
+    }
+    #card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin: 20px auto;
+      max-width: 300px;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="card">
+    <h2>📖 Genesis 1:1</h2>
+    <p>In the beginning Elohim created the heavens and the earth.</p>
+  </div>
+
+  <button onclick="shareTestImage()">📤 Share This Test Image</button>
+
+  <script>
+    function shareTestImage() {
+      const card = document.getElementById('card');
+      html2canvas(card).then(canvas => {
+        canvas.toBlob(blob => {
+          const file = new File([blob], 'verse.png', { type: 'image/png' });
+
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            navigator.share({
+              files: [file],
+              title: '📘 Die Boek Van Herinnering',
+              text: 'Download the app:\nhttps://boekvanherinnering.github.io/bibleapp-test/'
+            }).then(() => {
+              alert('Shared successfully!');
+            }).catch(err => {
+              alert('Share failed: ' + err);
+            });
+          } else {
+            alert('📥 Sharing not supported. Image saved instead.');
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(file);
+            a.download = 'verse.png';
+            a.click();
+          }
+        }, 'image/png');
+      });
+    }
+  </script>
+
+</body>
+</html>
