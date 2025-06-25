@@ -2,114 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Verse Share Preview</title>
+  <title>📤 Verse Preview</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f3f3f3;
-      padding: 20px;
+      font-family: 'Arial', sans-serif;
       text-align: center;
-    }
-    #verseCard {
-      border-radius: 20px;
+      background-color: #f2f2f2;
+      margin: 0;
       padding: 20px;
-      margin: 20px auto;
-      background: #ffffff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      max-width: 350px;
-      position: relative;
     }
-    #verseCard img {
-      width: 50px;
-      height: 50px;
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
     }
-    #sharePreviewText {
-      font-size: 18px;
+    .app-logo {
+      width: 80px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+    .verse-text {
+      white-space: pre-wrap;
       margin: 20px 0;
+      font-size: 18px;
+      line-height: 1.6;
     }
-    select, input[type="range"], button {
-      margin: 10px 0;
+    .download-link {
+      margin-top: 20px;
+      font-weight: bold;
     }
-    a {
-      color: #007BFF;
+    .download-link a {
       text-decoration: none;
+      color: #007BFF;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="https://boekvanherinnering.github.io/bibleapp-test/app-icon.png" alt="App Logo" class="app-logo">
+    <h2>📘 Die Boek Van Herinnering</h2>
 
-  <h2>📤 Verse Share Preview</h2>
+    <div id="verseDisplay" class="verse-text">Loading verse...</div>
 
-  <div id="verseCard">
-    <img src="res/icon/icon.png" alt="App Icon">
-    <p id="sharePreviewText"></p>
-    <p style="font-size:14px;">📥 Download the app:<br>
-      <a href="https://drive.google.com/uc?export=download&id=1afP3HY0AohMsfNXl6Wv-FnrMZBZiyybo">BoekVanHerinnering-v1.4.apk </a>
-    </p>
+    <div class="download-link">
+      📥 <a href="https://drive.google.com/uc?export=download&id=1afP3HY0AohMsfNXl6Wv-FnrMZBZiyybo" target="_blank">
+        Download the App
+      </a>
+    </div>
   </div>
 
-  <label>🎨 Background:
-    <select onchange="changeCardBackground(this.value)">
-      <option value="#ffffff">White</option>
-      <option value="#f3f3f3">Light Gray</option>
-      <option value="linear-gradient(135deg, #dfe9f3, #ffffff)">Blue Gradient</option>
-      <option value="url('https://source.unsplash.com/350x200/?sky,clouds')">Sky Image</option>
-    </select>
-  </label>
-  <br>
-
-  <label>🔤 Font:
-    <select onchange="document.getElementById('sharePreviewText').style.fontFamily = this.value">
-      <option value="serif">Serif</option>
-      <option value="sans-serif">Sans Serif</option>
-      <option value="cursive">Cursive</option>
-      <option value="monospace">Monospace</option>
-    </select>
-  </label>
-  <br>
-
-  <label>🔎 Font Size:
-    <input type="range" min="14" max="32" value="18" 
-           onchange="document.getElementById('sharePreviewText').style.fontSize = this.value + 'px'">
-  </label>
-  <br><br>
-
-  <button onclick="downloadVerseImage()">📷 Download Image</button>
-  <button onclick="shareVerseImage()">📤 Share This Image</button>
-
-
   <script>
-  function changeCardBackground(value) {
-    const card = document.getElementById("verseCard");
-    if (value.startsWith("url(") || value.startsWith("linear-gradient")) {
-      card.style.background = value;
-      card.style.backgroundSize = "cover";
-    } else {
-      card.style.background = value;
-    }
-  }
-
-  function downloadVerseImage() {
-    const card = document.getElementById("verseCard");
-    html2canvas(card).then(canvas => {
-      const link = document.createElement("a");
-      link.download = "verse.png";
-      link.href = canvas.toDataURL();
-      link.click();
-    });
-  }
-
-  // Load verse from localStorage
-  document.addEventListener("DOMContentLoaded", () => {
-    const previewVerse = localStorage.getItem("previewVerse");
-    if (previewVerse) {
-      document.getElementById("sharePreviewText").innerText = previewVerse;
-    }
-  });
-</script>
-
-
+    const text = sessionStorage.getItem("selectedVersesText") || "⚠️ No verse selected.";
+    document.getElementById("verseDisplay").innerText = text;
+  </script>
 </body>
 </html>
