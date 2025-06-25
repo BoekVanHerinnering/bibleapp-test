@@ -46,7 +46,8 @@
     <img src="https://boekvanherinnering.github.io/bibleapp-test/app-icon.png" alt="App Logo" class="app-logo">
     <h2>📘 Die Boek Van Herinnering</h2>
 
-    <div id="verseDisplay" class="verse-text">Loading verse...</div>
+    <div id="verseDisplay" style="white-space: pre-wrap; padding: 20px; font-size: 20px;"></div>
+
 
     <div class="download-link">
       📥 <a href="https://drive.google.com/uc?export=download&id=1afP3HY0AohMsfNXl6Wv-FnrMZBZiyybo" target="_blank">
@@ -56,8 +57,14 @@
   </div>
 
   <script>
-    const text = sessionStorage.getItem("selectedVersesText") || "⚠️ No verse selected.";
-    document.getElementById("verseDisplay").innerText = text;
-  </script>
+  // Get text from localStorage
+  const text = localStorage.getItem("selectedVersesText") || "⚠️ No verse selected.";
+
+  // Display it
+  document.getElementById("verseDisplay").innerText = text;
+</script>
+
+
+
 </body>
 </html>
